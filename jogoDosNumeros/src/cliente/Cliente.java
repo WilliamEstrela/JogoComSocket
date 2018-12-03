@@ -26,10 +26,22 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
     private JTextField txtNome;
 
     public Cliente() throws IOException {
+
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+
         JLabel lblMessage = new JLabel("Verificar!");
         txtIP = new JTextField("127.0.0.1");
         txtPorta = new JTextField("12345");
-        txtNome = new JTextField("Cliente");
+        txtNome = new JTextField("Jogador");
         Object[] texts = { lblMessage, txtIP, txtPorta, txtNome };
         JOptionPane.showMessageDialog(null, texts);
 
@@ -38,7 +50,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
         texto.setEditable(false);
         texto.setBackground(new Color(240, 240, 240));
         txtMsg = new JTextField(20);
-        lblHistorico = new JLabel("Histórico");
+        lblHistorico = new JLabel("Hist�rico");
         lblMsg = new JLabel("Mensagem");
         btnSend = new JButton("Enviar");
         btnSend.setToolTipText("Enviar Mensagem");
